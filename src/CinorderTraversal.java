@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class CinorderTraversal {
     public class TreeNode {
@@ -15,19 +17,14 @@ public class CinorderTraversal {
           this.right = right;
       }
   }
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        inorder(root, res);
-        return res;
-    }
-
-    private void inorder(TreeNode root, List<Integer> res) {
-        if(root==null){
-            return;
+    public TreeNode invertTree(TreeNode cur) {
+        if(cur==null){
+            return cur;
         }
-        //
-        inorder(root.left,res);
-        res.add(root.val);
-        inorder(root.right,res);
+        TreeNode left =invertTree(cur.left);
+        TreeNode right=invertTree(cur.right);
+        cur.left=right;
+        cur.right=left;
+        return cur;
     }
 }
